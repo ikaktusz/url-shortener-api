@@ -1,0 +1,29 @@
+version: '3.9'
+
+volumes:
+    db-data:
+
+services:
+    db:
+        image: postgres:latest
+        restart: always
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=123456
+        ports:
+            - 5432:5432
+    
+    shortener:
+        build: .
+        restart: always
+        depends_on: 
+            - db
+        environment: 
+            - SECRET_KEY=123456
+            - SQLALCHEMY_DATABASE_URI=postgresql://postgres:123456@db:5432
+            - SQLALCHEMY_TRACK_MODIFICATIONS=False
+        ports:
+            - 8080:8080
+        
+    
