@@ -3,7 +3,7 @@
 Use the POST method to the /api/ endpoint.  
 Here's an example:  
 ### Request:  
-#### POST 127.0.0.1:8080/api/  
+ POST 127.0.0.1:8080/api/  
 ```json
 {
     "original_url": "http://yourlongurl.com"  
